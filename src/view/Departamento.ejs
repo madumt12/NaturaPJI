@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Departamentos</title>
+</head>
+<style>
+    h2{
+        font-size: 17px;
+        color: #502102;
+    }
+</style>
+<body style="background-color: #c79863;">
+    <center><h2 class="menu">Departamentos</h2></center>
+    
+    <% for(i = 0; i < tabela.rowCount; i++) { %>
+        <form action="/listarProduto/<%= tabela.rows[i].codigo %>" method="get" target="principal" style="margin-bottom: 10px;">
+            <button type="submit" style="padding: 10px; font-size: 16px;color: black;background-color: #FF6A13;;">
+                <%= tabela.rows[i].nome %>
+            </button>
+        </form>
+    <% } %>
+
+</body>
+</html>

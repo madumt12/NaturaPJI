@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrinho de Compras</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 10px;
+            text-align: center;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body style="background-color: #f2f2f2">
+    <center><h1>Carrinho de Compras</h1></center>
+
+    <% if (carrinho.length > 0) { %>
+        <table>
+            <thead>
+                <tr>
+                    <th>Produto</th>
+                    <th>Descrição</th>
+                    <th>Quantidade</th>
+                    <th>Preço Unitário</th>
+                    <th>Total Parcial</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% let totalGeral = 0; %>
+                <% carrinho.forEach((item) => { %>
+                    <% const totalParcial = item.qtde * item.preco; %> <!-- Corrigido para usar item.qtde -->
+                    <% totalGeral += totalParcial; %> <!-- Soma totalParcial para o totalGeral -->
+                    <tr>
+                        <td><strong><%= item.codigo %></strong></td>
+                        <td><%= item.descricao %></td>
+                        <td><%= item.qtde %></td>
+                        <td>R$<%= item.preco.toFixed(2) %></td>
+                        <td>R$<%= totalParcial.toFixed(2) %></td> <!-- Exibe totalParcial -->
+                        <td>
+                            <form action="/removerdocarrinho" method="POST" style="display: inline;">
+                                <input type="hidden" name="idProduto" value="<%= item.codigo %>">
+                                <button type="submit">Remover</button>
+                            </form>
+                        </td>
+                        
+                    </tr>
+                <% }) %>
+                <tr>
+                    <td colspan="4" style="text-align: right;"><strong>Total Geral:</strong></td>
+                    <td colspan="2"><strong>R$ <%= totalGeral.toFixed(2) %></strong></td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <form action="/finalizarCompra" method="POST" style="margin-top: 20px;">
+            <button type="submit">Finalizar Compra</button>
+        </form>
+    <% } else { %>
+        <center><p>Seu carrinho está vazio.</p></center>
+    <% } %>
+
+</body>
+</html>
