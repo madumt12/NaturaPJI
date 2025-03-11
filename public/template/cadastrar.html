@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastro de Cliente</title>
+    <link rel="stylesheet" type="text/css" href="../css/style.css" />
+</head>
+<style>
+    h1{
+        font-size: 2.5em;
+            color: #F2F2F2; /* Tom de laranja */
+            text-align: center;
+    }
+</style>
+<body>
+    <div class="card1">
+    <h1>Cadastro de Cliente</h1>
+    <form action="/cadastrar" method="post">
+        <label for="txtNome">Nome:</label>
+        <input type="text" name="txtNome" required /><br><br>
+
+        <label for="txtLogin">Login:</label>
+        <input type="text" name="txtLogin" required /><br><br>
+
+        <label for="txtSenha">Senha:</label>
+        <input type="password" name="txtSenha" required /><br><br>
+
+        <input type="submit" name="b1" value="Cadastrar" />
+    </form></div>
+</body>
+</html>
